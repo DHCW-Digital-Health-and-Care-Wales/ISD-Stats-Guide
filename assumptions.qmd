@@ -6,7 +6,7 @@ format:
     code-tools: true 
 ---
 
-Parametric tests (see below) are favoured when their assumptions can be satisfied since they are generally more powerful; that is, that they are more likely to detect real, significant patterns (e.g. a difference, a relationship) when present. However, the use of parametric tests is hinged on some key assumptions that, when they are not satisfied, might favour the use of non-parametric tests as an alternative. 
+Parametric tests (see below) are favoured when their assumptions can be satisfied since they are generally more powerful; that is, that they are more likely to detect real, significant patterns (e.g. a difference, a relationship) when present. However, the use of parametric tests is hinged on some key assumptions that, when they are not satisfied, might favour the use of non-parametric tests as an alternative.
 
 Below are some frequently used terms that describe the assumptions of statistical tests; these assumptions can be used to inform both the selection of the test used and the potential data manipulations needed to make your data satisfy those assumptions (e.g. your data might be non-normal but that distribution might be driven by just a few outliers, in which case it could be preferable to remove those outliers to enable a parametric test as opposed to selecting a less powerful, non-parametric test due to non-normality). Finally, it is worth noting that ‘non-parametric’ does not mean that the test makes *no* assumptions about the data, only that it typically makes no assumptions about the *distribution* of the data.
 
@@ -93,7 +93,7 @@ ggplot(all_data, aes(x = value)) +
 
 ##### Shapiro-Wilks Test
 
-This statistical test of normality tests the null-hypothesis that the data is normally distributed, with a significant (< 0.05) p-value indicating non-normal data. 
+This statistical test of normality tests the null-hypothesis that the data is normally distributed, with a significant (\< 0.05) p-value indicating non-normal data.
 
 That being said, Shapiro-Wilks can be particularly sensitive to large sample sizes (particularly relevant to much of the work in Info Delivery), in which case it is also appropriate to pay attention to the W value of the test, which is essentially a score between 0 and 1 of how well the data matches a normal distribution, with 1 representing a perfect match. With large sample sizes, a Shapiro-Wilks test might indicate (with a significant p-value) that a dataset is non-normal, but the W value is 0.99, in which case it is unlikely that any subsequent data manipulations would be needed for most statistical tests. Still, it provides a useful flag for when you should be on the lookout for potential adjustments to the data that you could make to better fulfil the parameters of your statistical test (e.g. there could be some outliers worth removing).
 
@@ -107,9 +107,11 @@ shapiro.test(all_data$value)
 
 #### Levene's Test
 
-Levene’s Test is a statistical test of homogeneity of variances. It tests the null-hypothesis that there is equal variance between samples (i.e. groups), with a significant (i.e. < 0.05) p-value indicating unequal variance between samples. Boxplots (code below) can be used to visualise differences in variance between samples.
+Levene’s Test is a statistical test of homogeneity of variances. It tests the null-hypothesis that there is equal variance between samples (i.e. groups), with a significant (i.e. \< 0.05) p-value indicating unequal variance between samples. Boxplots (code below) can be used to visualise differences in variance between samples.
 
 ```{r}
+
+library(car)
 
 leveneTest(value ~ type, all_data)
 
@@ -120,7 +122,6 @@ leveneTest(value ~ type, all_data)
 #### Variance Inflation Factor (VIF)
 
 VIF is a tool to help identify the degree of multicollinearity among predictor variables in a multiple (linear) regression analysis (if only one explanatory variable for the independent variable is being used, then there is no need to consider multicollinearity). If multicollinearity is present within a multiple regression, then the p-values and regression coefficients of the resulting analysis are typically unreliable. This is because, in simple terms, including highly correlated variables within the regression analysis can be thought of as ‘double counting’; the analysis then struggles to determine the separate influence of those correlated variables with the independent variable. Testing VIF first involves running a linear regression (model), so you may want to see later sections for more context on the analysis beforehand. A VIF value above 5 is generally deemed to give ‘cause for concern’, indicating high collinearity.
-
 
 ```{r}
 
