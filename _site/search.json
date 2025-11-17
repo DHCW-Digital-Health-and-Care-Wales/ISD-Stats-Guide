@@ -1,0 +1,72 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Guide to Statistical Analysis in Info Delivery",
+    "section": "",
+    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites.\n\n\nCode\n1 + 1\n\n\n[1] 2"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "Preface",
+    "section": "",
+    "text": "This document has been produced to guide analysts through the use of statistical analyses in Info Delivery; it spares details on statistical theory and predominantly focuses on key, actionable steps from how to decide on which statistical test(s) to use, to getting the results of that test displayed in a Power BI visual. Thus, there is little information included within here on how exactly each test works from a statistical perspective, nor exactly how the values from a test should be interpreted (but see below). Nonetheless, it is generally recommended that whenever using any statistical test, you consult external resources (e.g. Stack Overflow, R bloggers) that help gauge an understanding of what your statistical test is asking of the data and what the results mean within that context.\n\nSignificance Testing\nThis guide predominantly focuses on null hypothesis significance testing, meaning that ‘significant results’ are interpreted as being below a p-value of 0.05. Simply put, these p-values are a numerical representation of your degree of confidence in the result of a test, as it is the probability that you could have attained those results purely by chance. Thus, it is always worth considering that this 0.05 threshold is somewhat arbitrary, and the probability of having attained a result being 0.049 versus 0.051 should not necessarily lead to a wildly different interpretation. P-values are therefore often criticized (despite their ongoing, widespread use) and this should be considered when interpreting the results of a statistical test (see (176) P-values Broke Scientific Statistics—Can We Fix Them? - YouTube for a simple explanation of p-value criticisms). In line with these criticism, it is worth considering that the great number of analyses you run on the same set of data, the more likely it is that you encounter a significant result by chance (e.g. a false positive); in which case, consider implementing a multiple-comparison correction (e.g. Bonferroni test). Finally, while we have generally endeavored to categorise each statistical test’s assumptions concisely this could sometimes lead to an oversimplification of a given test (e.g. some ‘parametric tests’ are more robust to non-normality that others). Again, reading around the statistical test that you select is generally advised."
+  },
+  {
+    "objectID": "choosing.html",
+    "href": "choosing.html",
+    "title": "Choosing a Test",
+    "section": "",
+    "text": "Basic Statistical Tests - Choosing a Test"
+  },
+  {
+    "objectID": "assumptions.html",
+    "href": "assumptions.html",
+    "title": "Assumptions & Data Criteria",
+    "section": "",
+    "text": "Parametric tests (see below) are favoured when their assumptions can be satisfied since they are generally more powerful; that is, that they are more likely to detect real, significant patterns (e.g. a difference, a relationship) when present. However, the use of parametric tests is hinged on some key assumptions that, when they are not satisfied, might favour the use of non-parametric tests as an alternative.\nBelow are some frequently used terms that describe the assumptions of statistical tests; these assumptions can be used to inform both the selection of the test used and the potential data manipulations needed to make your data satisfy those assumptions (e.g. your data might be non-normal but that distribution might be driven by just a few outliers, in which case it could be preferable to remove those outliers to enable a parametric test as opposed to selecting a less powerful, non-parametric test due to non-normality). Finally, it is worth noting that ‘non-parametric’ does not mean that the test makes no assumptions about the data, only that it typically makes no assumptions about the distribution of the data."
+  },
+  {
+    "objectID": "assumptions.html#assumptions-dictionary",
+    "href": "assumptions.html#assumptions-dictionary",
+    "title": "Assumptions & Data Criteria",
+    "section": "Assumptions Dictionary",
+    "text": "Assumptions Dictionary\n\n\n\n\n\n\n\nAssumption\nDefinition\n\n\n\n\nNormal Distribution\nArobability distribution that is symmetric about the mean with value frequency decreasing with distance from the mean (i.e. the classic ‘bell-curve distribution’.\n\n\nParametric\nTests that make assumptions about the distribution of a population (generally, the ‘normal’ distribution) from which they are sampled.\n\n\nNon-parametric\nTests that do not assume the sample follows a normal distribution.\n\n\nPaired Data (aka repeated measures)\nTwo or more variables that are linked together between datasets and/or groups (e.g. pre- and post-surgery haemoglobin values of the same patient).\n\n\nIndependent Data\nTwo or more variables/datasets that do not depend on each other (i.e. the values in one sample do not affect the values in another sample).\n\n\nHomoscedasticity (aka homogeneity of variance)\nThe variances of independent groups being compared are approximately equal.\n\n\nMulticollinearity\nWhen two or more independent variables in a regression model are highly correlated with each other."
+  },
+  {
+    "objectID": "assumptions.html#statistical-tests-their-assumptions",
+    "href": "assumptions.html#statistical-tests-their-assumptions",
+    "title": "Assumptions & Data Criteria",
+    "section": "Statistical Tests & Their Assumptions",
+    "text": "Statistical Tests & Their Assumptions\n\n\n\n\n\n\n\nStatistical Test\nAssumption\n\n\n1-Sample Wilcoxon Test (signed rank)\nNon-parametric\n\n\n1-Sample t-test\nParametric\n\n\nPaired-Sample t-test\nParametric; Paired data; Normal Distribution of mean difference between groups\n\n\nWilcoxon Test (signed rank)\nNon-parametric; Independent data; Distribution shape similar between groups\n\n\n2-Sample t-test\nParametric; Independent data; Homoscedasticity\n\n\nMann-Whitney\nNon-parametric; Independent data; Distribution shape similar between groups\n\n\nOne-Way ANOVA\nParametric; Independent data; Homoscedasticity\n\n\nKruskal-Wallis\nNon-parametric; Independent data; Distribution shape similar between groups\n\n\nTwo-Way ANOVA\nParametric; Independent Data; Homoscedasticity\n\n\nLinear Regression\nParametric; Consistent variance; No multicollinearity; homoscendasticity of the dependent variable across the vales of the independent variables\n\n\nPearson’s R Correlation\nParametric; Does not assume dependence of one variable on another\n\n\nSpearman’s Rank\nNon-parametric; Does not assume dependence of one variable on another\n\n\nX2 (Chi-square) Goodness of Fit\nNon-parametric; Independent data; Mutually exclusive groups\n\n\nX2 (Chi-square) Contingency Table\nNon-parametric; Independent data; Mutually exclusive groups"
+  },
+  {
+    "objectID": "assumptions.html#testing-assumptions-of-your-data",
+    "href": "assumptions.html#testing-assumptions-of-your-data",
+    "title": "Assumptions & Data Criteria",
+    "section": "Testing Assumptions of Your Data",
+    "text": "Testing Assumptions of Your Data\n\nHistogram\nVisualising your data using geom_histogram() is great for spotting normality without doing any statistical testing.\n\n\nCode\n# Load libraries\nlibrary(ggplot2)\n\n# 1. Normally distributed data\nset.seed(123)\nnormal_data &lt;- rnorm(1000, mean = 50, sd = 10)\n\n# 2. Non-normally distributed data (Exponential)\nnon_normal_data &lt;- rexp(1000, rate = 0.1)\n\n# 3. Non-normal with outliers (Start with normal, add extreme values)\noutlier_data &lt;- c(rnorm(950, mean = 50, sd = 10), rnorm(50, mean = 150, sd = 5))\n\n# Create data frames for plotting\ndf1 &lt;- data.frame(value = normal_data, type = \"Normal\")\ndf2 &lt;- data.frame(value = non_normal_data, type = \"Non-Normal\")\ndf3 &lt;- data.frame(value = outlier_data, type = \"Non-Normal with Outliers\")\n\n# Combine all\nall_data &lt;- rbind(df1, df2, df3)\nall_data$type &lt;- factor(all_data$type,\n                        levels = c(\"Normal\", \n                                   \"Non-Normal\", \n                                   \"Non-Normal with Outliers\"))\n\n\n# Plot histograms using facets\nggplot(all_data, aes(x = value)) +\n  geom_histogram(bins = 30, fill = \"steelblue\", color = \"white\") +\n  facet_wrap(~type, scales = \"free\") +\n  theme_minimal() +\n  labs(title = \"Comparison of Distributions\",\n       x = element_blank(),\n       y = element_blank())\n\n\nWarning: `label` cannot be a &lt;ggplot2::element_blank&gt; object.\n`label` cannot be a &lt;ggplot2::element_blank&gt; object."
+  },
+  {
+    "objectID": "test_scripts.html",
+    "href": "test_scripts.html",
+    "title": "R Code for Basic Statistical Tests & Making Visuals",
+    "section": "",
+    "text": "Code\n# library(ggplot2)\n# \n# Name1 &lt;- wilcox.test(data$variable, \n#                      mu = X , \n#                      alternative = \"two.sided\") \n# \n# ## ^ mu = X is where you specify the value  for which you want to test if your variable significantly differs from\n# \n# text = paste(\"1-Sample Wilcoxon Test:\",\n#              \"\\n\",\n#              \"V:\", \n#              round(Name1$statistic, digits = 3),\n#              \",\",\n#              \"p-value:\",\n#              round(Name1$p.value, digits = 3))\n# \n# ggplot() +\n#   annotate(\"text\", \n#            x = 0.5, \n#            y = 0, \n#            size = 4, \n#            label = \n#              text, \n#            hjust = 0.5) +\n#   theme_void()"
+  },
+  {
+    "objectID": "test_scripts.html#a-1-sample-wicoxon-test",
+    "href": "test_scripts.html#a-1-sample-wicoxon-test",
+    "title": "R Code for Basic Statistical Tests & Making Visuals",
+    "section": "",
+    "text": "Code\n# library(ggplot2)\n# \n# Name1 &lt;- wilcox.test(data$variable, \n#                      mu = X , \n#                      alternative = \"two.sided\") \n# \n# ## ^ mu = X is where you specify the value  for which you want to test if your variable significantly differs from\n# \n# text = paste(\"1-Sample Wilcoxon Test:\",\n#              \"\\n\",\n#              \"V:\", \n#              round(Name1$statistic, digits = 3),\n#              \",\",\n#              \"p-value:\",\n#              round(Name1$p.value, digits = 3))\n# \n# ggplot() +\n#   annotate(\"text\", \n#            x = 0.5, \n#            y = 0, \n#            size = 4, \n#            label = \n#              text, \n#            hjust = 0.5) +\n#   theme_void()"
+  },
+  {
+    "objectID": "test_scripts.html#a-1-sample-t-test",
+    "href": "test_scripts.html#a-1-sample-t-test",
+    "title": "R Code for Basic Statistical Tests & Making Visuals",
+    "section": "(a) 1-Sample t-test",
+    "text": "(a) 1-Sample t-test\n\n\nCode\n# library(ggplot2)\n# \n# Name1 &lt;- wilcox.test(data$variable, \n#                      mu = X , \n#                      alternative = \"two.sided\") \n# \n# ## ^ mu = X is where you specify the value  for which you want to test if your variable significantly differs from\n# \n# text = paste(\"1-Sample Wilcoxon Test:\",\n#              \"\\n\",\n#              \"V:\", \n#              round(Name1$statistic, digits = 3),\n#              \",\",\n#              \"p-value:\",\n#              round(Name1$p.value, digits = 3))\n# \n# ggplot() +\n#   annotate(\"text\", \n#            x = 0.5, \n#            y = 0, \n#            size = 4, \n#            label = \n#              text, \n#            hjust = 0.5) +\n#   theme_void()"
+  }
+]
