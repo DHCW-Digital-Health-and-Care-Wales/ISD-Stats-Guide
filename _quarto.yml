@@ -1,0 +1,28 @@
+project:
+  type: website
+
+website:
+  title: "Guide to Statistical Analysis in ISD"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: about.qmd
+        text: Preface
+      - href: choosing.qmd
+        text: Choosing a Test
+      - href: assumptions.qmd
+        text: Assumptions
+      - href: test_scripts.qmd
+        text: Example R Scripts
+      - href: advanced_stats.qmd
+        text: Advanced Statistical Analyses
+        
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+
+editor: visual
+

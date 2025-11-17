@@ -1,0 +1,6 @@
+---
+title: "Choosing a Test"
+format: html
+---
+
+![Basic Statistical Tests - Choosing a Test](images/choosing_test.png)

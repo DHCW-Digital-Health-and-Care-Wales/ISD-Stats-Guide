@@ -1,0 +1,72 @@
+---
+title: "R Code for Basic Statistical Tests & Making Visuals"
+format:
+  html:
+    code-fold: true
+    code-tools: true
+---
+
+## (a) 1-Sample Wicoxon Test
+
+```{r}
+
+# library(ggplot2)
+# 
+# Name1 <- wilcox.test(data$variable, 
+#                      mu = X , 
+#                      alternative = "two.sided") 
+# 
+# ## ^ mu = X is where you specify the value  for which you want to test if your variable significantly differs from
+# 
+# text = paste("1-Sample Wilcoxon Test:",
+#              "\n",
+#              "V:", 
+#              round(Name1$statistic, digits = 3),
+#              ",",
+#              "p-value:",
+#              round(Name1$p.value, digits = 3))
+# 
+# ggplot() +
+#   annotate("text", 
+#            x = 0.5, 
+#            y = 0, 
+#            size = 4, 
+#            label = 
+#              text, 
+#            hjust = 0.5) +
+#   theme_void()
+
+```
+
+
+## (a) 1-Sample *t*-test
+
+```{r}
+
+# library(ggplot2)
+# 
+# Name1 <- wilcox.test(data$variable, 
+#                      mu = X , 
+#                      alternative = "two.sided") 
+# 
+# ## ^ mu = X is where you specify the value  for which you want to test if your variable significantly differs from
+# 
+# text = paste("1-Sample Wilcoxon Test:",
+#              "\n",
+#              "V:", 
+#              round(Name1$statistic, digits = 3),
+#              ",",
+#              "p-value:",
+#              round(Name1$p.value, digits = 3))
+# 
+# ggplot() +
+#   annotate("text", 
+#            x = 0.5, 
+#            y = 0, 
+#            size = 4, 
+#            label = 
+#              text, 
+#            hjust = 0.5) +
+#   theme_void()
+
+```

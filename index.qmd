@@ -1,0 +1,17 @@
+---
+title: "Guide to Statistical Analysis in Info Delivery"
+author: Joshua Allen & Jessica Scrimshire
+toc: true
+format:
+  html:
+    code-fold: true
+    code-tools: true    
+---
+
+This is a Quarto website.
+
+To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+
+```{r}
+1 + 1
+```
